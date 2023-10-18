@@ -26,7 +26,7 @@ async function main() {
         ],
         basePrice: 650,
         categoryId: mousesCategory.id,
-        discountPercentage: 10, // 10% discount
+        discountPercent: 10, // 10% discount
       },
       {
         name: "Logitech Pro X Superlight",
@@ -41,7 +41,7 @@ async function main() {
         ],
         basePrice: 750,
         categoryId: mousesCategory.id,
-        discountPercentage: 5, // 5% discount
+        discountPercent: 5, // 5% discount
       },
       {
         name: "Logitech G305 Lightspeed",
@@ -56,7 +56,7 @@ async function main() {
         ],
         basePrice: 300,
         categoryId: mousesCategory.id,
-        discountPercentage: 15, // 15% discount
+        discountPercent: 15, // 15% discount
       },
       {
         name: "Hyperx Pulsefire Dart",
@@ -71,7 +71,7 @@ async function main() {
         ],
         basePrice: 600,
         categoryId: mousesCategory.id,
-        discountPercentage: 10, // 10% discount
+        discountPercent: 10, // 10% discount
       },
       {
         name: "Razer Deathadder V2 Pro",
@@ -86,7 +86,7 @@ async function main() {
         ],
         basePrice: 350,
         categoryId: mousesCategory.id,
-        discountPercentage: 0,
+        discountPercent: 0,
       },
     ];
 
@@ -116,7 +116,7 @@ async function main() {
         ],
         basePrice: 650,
         categoryId: keyboardsCategory.id,
-        discountPercentage: 10, // 10% discount
+        discountPercent: 10, // 10% discount
       },
       {
         name: "Logitech MX Keys S",
@@ -131,7 +131,7 @@ async function main() {
         ],
         basePrice: 750,
         categoryId: keyboardsCategory.id,
-        discountPercentage: 10, // 10% discount
+        discountPercent: 10, // 10% discount
       },
       {
         name: "Logitech Pop Keys",
@@ -146,7 +146,7 @@ async function main() {
         ],
         basePrice: 440,
         categoryId: keyboardsCategory.id,
-        discountPercentage: 5, // 10% discount
+        discountPercent: 5, // 10% discount
       },
       {
         name: "Logitech MX Mechanical",
@@ -161,7 +161,7 @@ async function main() {
         ],
         basePrice: 700,
         categoryId: keyboardsCategory.id,
-        discountPercentage: 15, // 10% discount
+        discountPercent: 15, // 10% discount
       },
       {
         name: "Epomaker TH80",
@@ -176,7 +176,7 @@ async function main() {
         ],
         basePrice: 500,
         categoryId: keyboardsCategory.id,
-        discountPercentage: 5, // 10% discount
+        discountPercent: 5, // 10% discount
       },
       {
         name: "Redragon Gamer Ashe",
@@ -191,7 +191,7 @@ async function main() {
         ],
         basePrice: 400,
         categoryId: keyboardsCategory.id,
-        discountPercentage: 25, // 10% discount
+        discountPercent: 25, // 10% discount
       },
     ];
 
@@ -221,7 +221,7 @@ async function main() {
         ],
         basePrice: 750,
         categoryId: headphonesCategory.id,
-        discountPercentage: 10, // 10% discount
+        discountPercent: 10, // 10% discount
       },
       {
         name: "Logitech Pro X 2 Lightspeed",
@@ -236,7 +236,7 @@ async function main() {
         ],
         basePrice: 1200,
         categoryId: headphonesCategory.id,
-        discountPercentage: 5, // 10% discount
+        discountPercent: 5, // 10% discount
       },
       {
         name: "Logitech Astro A30",
@@ -251,7 +251,7 @@ async function main() {
         ],
         basePrice: 1500,
         categoryId: headphonesCategory.id,
-        discountPercentage: 15, // 10% discount
+        discountPercent: 15, // 10% discount
       },
       {
         name: "Logitech Zone Wired Earbuds",
@@ -266,7 +266,7 @@ async function main() {
         ],
         basePrice: 550,
         categoryId: headphonesCategory.id,
-        discountPercentage: 5, // 10% discount
+        discountPercent: 5, // 10% discount
       },
       {
         name: "Hyperx Cloud Stinger 2",
@@ -281,7 +281,7 @@ async function main() {
         ],
         basePrice: 250,
         categoryId: headphonesCategory.id,
-        discountPercentage: 0, // 10% discount
+        discountPercent: 0, // 10% discount
       },
       {
         name: "Razer Kraken X",
@@ -296,7 +296,7 @@ async function main() {
         ],
         basePrice: 200,
         categoryId: headphonesCategory.id,
-        discountPercentage: 0, // 10% discount
+        discountPercent: 0, // 10% discount
       },
     ];
 
@@ -326,7 +326,7 @@ async function main() {
         ],
         basePrice: 950,
         categoryId: mousepadsCategory.id,
-        discountPercentage: 10, // 10% discount
+        discountPercent: 10, // 10% discount
       },
       {
         name: "Logitech Desk Mat",
@@ -341,7 +341,7 @@ async function main() {
         ],
         basePrice: 150,
         categoryId: mousepadsCategory.id,
-        discountPercentage: 0, // 10% discount
+        discountPercent: 0, // 10% discount
       },
       {
         name: "Logitech G740",
@@ -356,7 +356,7 @@ async function main() {
         ],
         basePrice: 200,
         categoryId: mousepadsCategory.id,
-        discountPercentage: 5, // 10% discount
+        discountPercent: 5, // 10% discount
       },
       {
         name: "Logitech Mousepad Studio Series",
@@ -371,7 +371,7 @@ async function main() {
         ],
         basePrice: 250,
         categoryId: mousepadsCategory.id,
-        discountPercentage: 15, // 10% discount
+        discountPercent: 15, // 10% discount
       },
       {
         name: "Force One Skyhawk Dark",
@@ -386,7 +386,7 @@ async function main() {
         ],
         basePrice: 300,
         categoryId: mousepadsCategory.id,
-        discountPercentage: 10, // 10% discount
+        discountPercent: 10, // 10% discount
       },
       {
         name: "Force One Skyhawk Snow",
@@ -401,7 +401,7 @@ async function main() {
         ],
         basePrice: 300,
         categoryId: mousepadsCategory.id,
-        discountPercentage: 5, // 10% discount
+        discountPercent: 5, // 10% discount
       },
     ];
 
@@ -431,7 +431,7 @@ async function main() {
         ],
         basePrice: 1500,
         categoryId: monitorsCategory.id,
-        discountPercentage: 15, // 10% discount
+        discountPercent: 15, // 10% discount
       },
       {
         name: "Dell P2422H",
@@ -446,7 +446,7 @@ async function main() {
         ],
         basePrice: 2000,
         categoryId: monitorsCategory.id,
-        discountPercentage: 5, // 10% discount
+        discountPercent: 5, // 10% discount
       },
       {
         name: "Dell P2723QE",
@@ -461,7 +461,7 @@ async function main() {
         ],
         basePrice: 2500,
         categoryId: monitorsCategory.id,
-        discountPercentage: 0, // 10% discount
+        discountPercent: 0, // 10% discount
       },
       {
         name: "Dell S3422DWG",
@@ -476,7 +476,7 @@ async function main() {
         ],
         basePrice: 3200,
         categoryId: monitorsCategory.id,
-        discountPercentage: 0, // 10% discount
+        discountPercent: 0, // 10% discount
       },
       {
         name: "Dell S3222DGM",
@@ -491,7 +491,7 @@ async function main() {
         ],
         basePrice: 3500,
         categoryId: monitorsCategory.id,
-        discountPercentage: 0, // 10% discount
+        discountPercent: 0, // 10% discount
       },
       {
         name: "Dell AW2524HF",
@@ -506,7 +506,7 @@ async function main() {
         ],
         basePrice: 4200,
         categoryId: monitorsCategory.id,
-        discountPercentage: 10, // 10% discount
+        discountPercent: 10, // 10% discount
       },
     ];
 
@@ -536,7 +536,7 @@ async function main() {
         ],
         basePrice: 1200,
         categoryId: speakersCategory.id,
-        discountPercentage: 5, // 10% discount
+        discountPercent: 5, // 10% discount
       },
       {
         name: "Logitech Dock",
@@ -551,7 +551,7 @@ async function main() {
         ],
         basePrice: 4500,
         categoryId: speakersCategory.id,
-        discountPercentage: 15, // 10% discount
+        discountPercent: 15, // 10% discount
       },
       {
         name: "Sony SA-Z9R Speakers",
@@ -566,7 +566,7 @@ async function main() {
         ],
         basePrice: 4000,
         categoryId: speakersCategory.id,
-        discountPercentage: 10, // 10% discount
+        discountPercent: 10, // 10% discount
       },
       {
         name: "Sony XB43 Extra Bass",
@@ -581,7 +581,7 @@ async function main() {
         ],
         basePrice: 3200,
         categoryId: speakersCategory.id,
-        discountPercentage: 0, // 10% discount
+        discountPercent: 0, // 10% discount
       },
       {
         name: "Sony XB23 Extra Bass",
@@ -596,7 +596,7 @@ async function main() {
         ],
         basePrice: 3500,
         categoryId: speakersCategory.id,
-        discountPercentage: 0, // 10% discount
+        discountPercent: 0, // 10% discount
       },
       {
         name: "Sony HT-S200F Soundbar",
@@ -611,7 +611,7 @@ async function main() {
         ],
         basePrice: 2500,
         categoryId: speakersCategory.id,
-        discountPercentage: 0, // 10% discount
+        discountPercent: 0, // 10% discount
       },
     ];
 
