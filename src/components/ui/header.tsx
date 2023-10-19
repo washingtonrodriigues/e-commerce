@@ -8,6 +8,8 @@ import {
   HomeIcon,
   LogOutIcon,
 } from "lucide-react";
+import styles from "../../styles/fonts.module.css";
+import classNames from "classnames";
 import { Button } from "./button";
 import { Card } from "./card";
 import { Sheet, SheetContent, SheetHeader, SheetTrigger } from "./sheet";
@@ -25,7 +27,9 @@ const Header = () => {
 
   const { status, data } = useSession();
   return (
-    <Card className="flex items-center justify-between p-[1.875rem]">
+    <Card
+      className={`flex items-center justify-between p-[1.875rem] ${styles.poppins}`}
+    >
       <Sheet>
         <SheetTrigger asChild>
           <Button size="icon" variant="outline">
@@ -53,7 +57,7 @@ const Header = () => {
               <Separator />
             </div>
           )}
-          <div className="mt-4 flex flex-col gap-3">
+          <div className={`mt-4 flex flex-col gap-3 ${styles.poppins}`}>
             {status === "unauthenticated" && (
               <Button
                 variant="outline"

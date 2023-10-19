@@ -8,6 +8,8 @@ import {
   SpeakerIcon,
   SquareIcon,
 } from "lucide-react";
+import styles from "../../../styles/fonts.module.css";
+import classNames from "classnames";
 
 interface CategoryItemProps {
   category: Category;
@@ -28,7 +30,9 @@ const CategoryItem = ({ category }: CategoryItemProps) => {
       className="flex items-center justify-center gap-2 rounded-lg py-3"
     >
       {categoryIcon[category.slug as keyof typeof categoryIcon]}
-      <span className="text-xs font-bold">{category.name}</span>
+      <span className={`text-xs font-bold ${styles.poppins}`}>
+        {category.name}
+      </span>
     </Badge>
   );
 };
