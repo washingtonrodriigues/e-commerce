@@ -1,6 +1,7 @@
 import { prismaClient } from "@/lib/prisma";
+import ProductImages from "./components/product-images";
 
-interface ProductDetailsProps {
+interface ProductDetailsPageProps {
   params: {
     slug: string;
   };
@@ -8,7 +9,7 @@ interface ProductDetailsProps {
 
 const ProductDetailsPage = async ({
   params: { slug },
-}: ProductDetailsProps) => {
+}: ProductDetailsPageProps) => {
   const product = await prismaClient.product.findFirst({
     where: {
       slug: slug,
@@ -16,7 +17,11 @@ const ProductDetailsPage = async ({
   });
 
   if (!product) return null;
-  return <div>{product.name}</div>;
+  return (
+    <div>
+      <ProductImages imageUrls={product.imageUrls} name={product.name} />
+    </div>
+  );
 };
 
 export default ProductDetailsPage;
