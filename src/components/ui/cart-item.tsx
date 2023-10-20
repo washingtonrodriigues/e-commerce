@@ -41,7 +41,7 @@ const CartItem = ({ product }: CartItemProps) => {
           />
         </div>
         <div className="flex flex-col gap-2">
-          <p className="text-xs">{product.name}</p>
+          <p className="whitespace-nowrap text-xs">{product.name}</p>
           <div className="flex items-center gap-2">
             <p className=" font-bold" style={{ fontSize: "13px" }}>
               R$ {product.totalPrice.toFixed(2).replace(".", ",")}
