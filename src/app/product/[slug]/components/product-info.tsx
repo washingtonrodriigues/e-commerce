@@ -14,6 +14,7 @@ interface ProductInfoProps {
 const ProductInfo = ({ product }: ProductInfoProps) => {
   const [quantity, setQuantity] = useState(1);
   const { addProductToCart } = useContext(CartContext);
+
   const handleDecreaseQuantityClick = () => {
     setQuantity((prev) => (prev === 1 ? prev : prev - 1));
   };
@@ -67,6 +68,7 @@ const ProductInfo = ({ product }: ProductInfoProps) => {
       >
         Adicionar ao carrinho
       </Button>
+
       <div className="mt-5 flex items-center justify-between rounded-lg bg-[#2A2A2A] px-5 py-2">
         <div className="flex items-center gap-2">
           <TruckIcon />
