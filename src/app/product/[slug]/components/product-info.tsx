@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { DiscountBadge } from "@/components/ui/discount-badge";
 import { ProductWithTotalPrice } from "@/helpers/product";
 import { CartContext } from "@/providers/cart";
+import { Alert, Snackbar } from "@mui/material";
 import { ArrowLeftIcon, ArrowRightIcon, TruckIcon } from "lucide-react";
 import { useContext, useState } from "react";
 
@@ -13,6 +14,7 @@ interface ProductInfoProps {
 
 const ProductInfo = ({ product }: ProductInfoProps) => {
   const [quantity, setQuantity] = useState(1);
+  const [showToastSuccess, setShowToastSuccess] = useState(false);
   const { addProductToCart } = useContext(CartContext);
 
   const handleDecreaseQuantityClick = () => {
@@ -24,6 +26,7 @@ const ProductInfo = ({ product }: ProductInfoProps) => {
 
   const handleAddToCartClick = () => {
     addProductToCart({ ...product, quantity });
+    setShowToastSuccess(true);
   };
   return (
     <div className="flex flex-col px-5">
@@ -83,6 +86,17 @@ const ProductInfo = ({ product }: ProductInfoProps) => {
         </div>
         <div className="text-xs font-bold">Frete Grátis</div>
       </div>
+      {showToastSuccess && (
+        <Snackbar
+          open={showToastSuccess}
+          autoHideDuration={4000}
+          onClose={() => setShowToastSuccess(false)}
+        >
+          <Alert className="mt-2" variant="filled" severity="success">
+            Produto adicionado ao carrinho!
+          </Alert>
+        </Snackbar>
+      )}
     </div>
   );
 };
