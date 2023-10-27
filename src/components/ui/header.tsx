@@ -7,6 +7,7 @@ import {
   ListOrderedIcon,
   HomeIcon,
   LogOutIcon,
+  PackageSearchIcon,
 } from "lucide-react";
 import styles from "../../styles/fonts.module.css";
 import classNames from "classnames";
@@ -24,7 +25,6 @@ import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
 import { Separator } from "@radix-ui/react-separator";
 import Link from "next/link";
 import Cart from "./cart";
-import { Badge } from "./badge";
 import { useContext } from "react";
 import { CartContext } from "@/providers/cart";
 
@@ -104,6 +104,17 @@ const Header = () => {
                 >
                   <HomeIcon size={16} />
                   Início
+                </Button>
+              </Link>
+            </SheetClose>
+            <SheetClose asChild>
+              <Link href="/orders">
+                <Button
+                  variant="outline"
+                  className="width-full justify-start gap-2"
+                >
+                  <PackageSearchIcon size={16} />
+                  Meus Pedidos
                 </Button>
               </Link>
             </SheetClose>
