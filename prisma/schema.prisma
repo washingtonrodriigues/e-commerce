@@ -19,16 +19,16 @@ model Category {
 }
 
 model Product {
-  id              String         @id @default(uuid())
-  name            String
-  slug            String
-  description     String
-  basePrice       Decimal        @db.Decimal(8, 2)
-  imageUrls       String[]
-  category        Category       @relation(fields: [categoryId], references: [id])
-  categoryId      String
+  id                 String         @id @default(uuid())
+  name               String
+  slug               String
+  description        String
+  basePrice          Decimal        @db.Decimal(8, 2)
+  imageUrls          String[]
+  categoryId         String
+  category           Category       @relation(fields: [categoryId], references: [id])
   discountPercent Int            @default(0)
-  OrderProduct    OrderProduct[]
+  OrderProduct       OrderProduct[]
 }
 
 model Order {
@@ -47,14 +47,14 @@ enum OrderStatus {
 }
 
 model OrderProduct {
-  id              String  @id @default(uuid())
-  productId       String
-  product         Product @relation(fields: [productId], references: [id])
-  orderId         String
-  order           Order   @relation(fields: [orderId], references: [id])
-  basePrice       Decimal @db.Decimal(8, 2)
+  id                 String  @id @default(uuid())
+  productId          String
+  product            Product @relation(fields: [productId], references: [id])
+  orderId            String
+  order              Order   @relation(fields: [orderId], references: [id])
+  basePrice          Decimal @db.Decimal(8, 2)
   discountPercent Int     @default(0)
-  quantity        Int
+  quantity           Int
 }
 
 model Account {
