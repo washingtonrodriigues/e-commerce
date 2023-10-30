@@ -50,6 +50,10 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     localStorage.setItem("@fsw-store/cart-products", JSON.stringify(products));
   }, [products]);
 
+  useEffect(() => {
+    localStorage.setItem("@fsw-store/cart-products", JSON.stringify(products));
+  }, [products]);
+
   const subtotal = useMemo(() => {
     return products.reduce((acc, product) => {
       return acc + Number(product.basePrice) * product.quantity;
