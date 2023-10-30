@@ -9,7 +9,8 @@ import { CartProvider } from "@/providers/cart";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "FSW Tech",
+  title:
+    "FSW Tech | O Paraíso dos Gamers: Ofertas Imperdíveis e Tecnologia sem Limites!",
   description:
     "O Paraíso dos Gamers: Ofertas Imperdíveis e Tecnologia sem Limites!",
 };
