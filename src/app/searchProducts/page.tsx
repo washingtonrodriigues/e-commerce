@@ -1,7 +1,7 @@
 "use client";
 
 import { useSearchParams } from "next/navigation";
-import { searchProducts } from "../api/search/search";
+import { searchProducts } from "../search/search";
 import { useEffect, useState } from "react";
 import {
   ProductWithTotalPrice,

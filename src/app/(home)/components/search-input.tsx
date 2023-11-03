@@ -1,6 +1,6 @@
 "use client";
 
-import { searchProducts } from "@/app/api/search/search";
+import { searchProducts } from "@/app/search/search";
 import { SearchIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
