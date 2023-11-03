@@ -7,6 +7,8 @@ import classNames from "classnames";
 import Link from "next/link";
 import { DiscountBadge } from "./discount-badge";
 
+export const dynamic = "force-dynamic";
+
 interface ProductItemProps {
   product: ProductWithTotalPrice;
 }
@@ -19,7 +21,7 @@ const ProductItem = ({ product }: ProductItemProps) => {
     >
       <div className="relative flex  aspect-square h-[170px] w-full items-center justify-center rounded-lg bg-accent">
         <Image
-          src={product.imageUrls[0]}
+          src={product.imageUrls?.[0]}
           height={0}
           width={0}
           sizes="100vw"
@@ -49,7 +51,7 @@ const ProductItem = ({ product }: ProductItemProps) => {
             </>
           ) : (
             <p className="text-sm font-semibold">
-              R$ {product.basePrice.toFixed(2).replace(".", ",")}
+              R$ {Number(product.basePrice).toFixed(2).replace(".", ",")}
             </p>
           )}
         </div>
