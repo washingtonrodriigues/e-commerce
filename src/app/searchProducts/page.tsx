@@ -9,10 +9,12 @@ import { Badge } from "@/components/ui/badge";
 import { SearchIcon } from "lucide-react";
 import { Product } from "@prisma/client";
 import SearchInput from "../(home)/components/search-input";
+import Loading from "./loading";
 
 const SearchProductsPage = () => {
   const [productsList, setProductsList] = useState<Product[]>([]);
   const [clickSearchBar, setClickSearchBar] = useState(false);
+  const [loading, setLoading] = useState(false);
   const searchParams = useSearchParams();
   const searchText = searchParams.get("product");
 
@@ -24,6 +26,7 @@ const SearchProductsPage = () => {
   useEffect(() => {
     if (searchText) {
       setClickSearchBar(false);
+      setLoading(true);
       searchProducts({ searchText })
         .then((products) => {
           setProductsList(products as any);
@@ -31,6 +34,9 @@ const SearchProductsPage = () => {
         })
         .catch((error) => {
           console.error("Erro ao buscar produtos:", error);
+        })
+        .finally(() => {
+          setLoading(false);
         });
     }
   }, [searchText]);
@@ -51,7 +57,9 @@ const SearchProductsPage = () => {
           </p>
         </Badge>
       )}
-      {productsList.length > 0 ? (
+      {loading ? (
+        <Loading className="mt-[50%]" />
+      ) : productsList.length > 0 ? (
         <div className="grid grid-cols-2 gap-8">
           {productsList.map((product) => (
             <ProductItem
