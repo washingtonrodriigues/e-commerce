@@ -1,7 +1,7 @@
 "use client";
 
 import { useSearchParams } from "next/navigation";
-import { searchProducts } from "../api/search/route";
+import { searchProducts } from "../api/search/search";
 import { useEffect, useState } from "react";
 import {
   ProductWithTotalPrice,
@@ -38,8 +38,6 @@ const SearchProductsPage = () => {
         });
     }
   }, [searchText]);
-
-  console.log(productsList);
 
   if (!productsList) return null;
 
