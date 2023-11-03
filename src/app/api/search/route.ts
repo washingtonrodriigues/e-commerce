@@ -3,7 +3,7 @@
 import { prismaClient } from "@/lib/prisma";
 import diacritics from "diacritics";
 
-export const searchProducts = async ({ searchText }: any) => {
+const searchProducts = async ({ searchText }: any) => {
   const normalizedSearchText = diacritics.remove(searchText);
   try {
     const products = await prismaClient.product.findMany({
@@ -33,11 +33,11 @@ export const searchProducts = async ({ searchText }: any) => {
       },
     });
 
-    return products;
-    // Faça algo com os produtos, como exibi-los
-    console.log("Produtos encontrados:", products);
+    return products; // Retornar os resultados em vez de usar res
   } catch (error) {
     console.error("Erro ao buscar produtos:", error);
-    throw error;
+    throw error; // Lançar o erro para que possa ser tratado onde a função é chamada
   }
 };
+
+export default searchProducts;

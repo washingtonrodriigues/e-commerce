@@ -1,17 +1,13 @@
 "use client";
 
 import { useSearchParams } from "next/navigation";
-import { searchProducts } from "../search/search";
+import searchProducts from "../api/search/route";
 import { useEffect, useState } from "react";
-import {
-  ProductWithTotalPrice,
-  computeProductTotalPrice,
-} from "@/helpers/product";
+import { computeProductTotalPrice } from "@/helpers/product";
 import ProductItem from "@/components/ui/product-item";
 import { Badge } from "@/components/ui/badge";
 import { SearchIcon } from "lucide-react";
 import { Product } from "@prisma/client";
-import { prismaClient } from "@/lib/prisma";
 import SearchInput from "../(home)/components/search-input";
 
 const SearchProductsPage = () => {
