@@ -5,39 +5,36 @@ import diacritics from "diacritics";
 
 const searchProducts = async ({ searchText }: any) => {
   const normalizedSearchText = diacritics.remove(searchText);
-  try {
-    const products = await prismaClient.product.findMany({
-      where: {
-        OR: [
-          {
+  const products = await prismaClient.product.findMany({
+    where: {
+      OR: [
+        {
+          name: {
+            contains: normalizedSearchText,
+            mode: "insensitive",
+          },
+        },
+        {
+          slug: {
+            contains: normalizedSearchText,
+            mode: "insensitive",
+          },
+        },
+        {
+          category: {
             name: {
               contains: normalizedSearchText,
               mode: "insensitive",
             },
           },
-          {
-            slug: {
-              contains: normalizedSearchText,
-              mode: "insensitive",
-            },
-          },
-          {
-            category: {
-              name: {
-                contains: normalizedSearchText,
-                mode: "insensitive",
-              },
-            },
-          },
-        ],
-      },
-    });
+        },
+      ],
+    },
+  });
 
-    return products; // Retornar os resultados em vez de usar res
-  } catch (error) {
-    console.error("Erro ao buscar produtos:", error);
-    throw error; // Lançar o erro para que possa ser tratado onde a função é chamada
-  }
+  if (!products) return console.log("Erro ao buscar produtos");
+
+  return products; // Retornar os resultados em vez de usar res
 };
 
 export default searchProducts;
