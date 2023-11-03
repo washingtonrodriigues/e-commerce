@@ -35,8 +35,6 @@ const SearchProductsPage = () => {
     }
   }, [searchText]);
 
-  if (!productsList) return null;
-
   return (
     <div className="flex flex-col gap-8 p-5">
       {clickSearchBar ? (
@@ -53,14 +51,20 @@ const SearchProductsPage = () => {
           </p>
         </Badge>
       )}
-      <div className="grid grid-cols-2 gap-8">
-        {productsList.map((product) => (
-          <ProductItem
-            key={product.id}
-            product={computeProductTotalPrice(product)}
-          />
-        ))}
-      </div>
+      {productsList.length > 0 ? (
+        <div className="grid grid-cols-2 gap-8">
+          {productsList.map((product) => (
+            <ProductItem
+              key={product.id}
+              product={computeProductTotalPrice(product)}
+            />
+          ))}
+        </div>
+      ) : (
+        <p className="absolute left-[25%] top-[50%]">
+          Nenhum produto encontrado!
+        </p>
+      )}
     </div>
   );
 };
