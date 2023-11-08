@@ -35,7 +35,7 @@ model Product {
 model Order {
   id            String         @id @default(uuid())
   userId        String
-  user          User           @relation(fields: [userId], references: [id])
+  user          User           @relation(fields: [userId], references: [id], onDelete: Cascade)
   orderProducts OrderProduct[]
   createdAt     DateTime       @default(now())
   updatedAt     DateTime       @default(now()) @updatedAt

@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Accordion,
   AccordionContent,
@@ -9,9 +11,11 @@ import { Prisma } from "@prisma/client";
 import { format } from "date-fns";
 import OrderProductItem from "./order-product-item";
 import { Separator } from "@/components/ui/separator";
-import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { computeProductTotalPrice } from "@/helpers/product";
 import { getOrderStatus } from "../helpers/status";
+import { TrashIcon } from "lucide-react";
+import handleDeleteOrder from "@/app/api/order/delete-order/delete";
 
 interface OrderItemProps {
   order: Prisma.OrderGetPayload<{
@@ -41,8 +45,17 @@ const OrderItem = ({ order }: OrderItemProps) => {
 
   const totalDiscounts = subtotal - total;
 
+  const handleClickDeleteOrder = () => {
+    const confirmDelete = confirm(
+      "Tem certeza que deseja deletar esse pedido?",
+    );
+    if (confirmDelete) {
+      handleDeleteOrder({ order });
+    }
+  };
+
   return (
-    <Card className="px-5">
+    <Card className="flex items-center justify-between gap-5 px-5">
       <Accordion type="single" className="w-full" collapsible>
         <AccordionItem value={order.id}>
           <AccordionTrigger>
@@ -128,6 +141,12 @@ const OrderItem = ({ order }: OrderItemProps) => {
           </AccordionContent>
         </AccordionItem>
       </Accordion>
+      <div
+        className=" rounded-sm bg-[#9e2828] p-2"
+        onClick={handleClickDeleteOrder}
+      >
+        <TrashIcon />
+      </div>
     </Card>
   );
 };
