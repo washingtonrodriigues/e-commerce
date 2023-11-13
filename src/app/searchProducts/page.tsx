@@ -2,7 +2,7 @@
 
 import { useSearchParams } from "next/navigation";
 import searchProducts from "../api/search/search-function";
-import { useEffect, useState } from "react";
+import { SetStateAction, useEffect, useState } from "react";
 import { computeProductTotalPrice } from "@/helpers/product";
 import ProductItem from "@/components/ui/product-item";
 import { Badge } from "@/components/ui/badge";

@@ -1,37 +1,28 @@
+"use client";
+
 import { Badge } from "@/components/ui/badge";
-import { authOptions } from "@/lib/auth";
-import { prismaClient } from "@/lib/prisma";
 import { PackageSearchIcon } from "lucide-react";
-import { getServerSession } from "next-auth";
 import OrderItem from "./components/order-item";
+import getOrders from "../api/order/get-orders/route";
 import { useEffect, useState } from "react";
 
 export const dynamic = "force-dynamic";
 
-const OrderPage = async () => {
-  const session = await getServerSession(authOptions);
+const OrderPage = () => {
+  const [ordersList, setOrdersList] = useState([]);
 
-  if (!session || !session.user) {
-    return (
-      <div className="flex h-full flex-col items-center justify-center gap-2 p-5">
-        <h2 className="font-bold">Acesso Negado!</h2>
-        <p className="text-sm opacity-60">Faça login para ver seus pedidos</p>
-      </div>
-    );
-  }
+  useEffect(() => {
+    const fetchOrders = async () => {
+      try {
+        const orders = await getOrders();
+        setOrdersList(orders);
+      } catch (error) {
+        console.log("Erro ao buscar pedidos: ", error);
+      }
+    };
 
-  const orders = await prismaClient.order.findMany({
-    where: {
-      userId: (session.user as any).id,
-    },
-    include: {
-      orderProducts: {
-        include: {
-          product: true,
-        },
-      },
-    },
-  });
+    fetchOrders();
+  }, []); // Executa apenas na montagem inicial
 
   return (
     <div className="p-5 lg:container lg:mx-auto lg:py-10">
@@ -43,9 +34,10 @@ const OrderPage = async () => {
         Meus pedidos
       </Badge>
       <div className="mt-5 flex flex-col gap-5">
-        {orders.map((order) => (
-          <OrderItem key={order.id} order={order} />
-        ))}
+        {ordersList.map((order) => {
+          console.log(order); // Adicione esta linha
+          return <OrderItem key={order.id} order={order} />;
+        })}
       </div>
     </div>
   );
