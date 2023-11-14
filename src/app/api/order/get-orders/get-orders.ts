@@ -11,7 +11,7 @@ const getOrders = async () => {
     console.log("Access denied! Please log in to view your orders.");
   }
 
-  const userId = (session.user as any).id;
+  const userId = (session?.user as any).id;
 
   const orders = await prismaClient.order.findMany({
     where: {
