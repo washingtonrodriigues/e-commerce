@@ -51,7 +51,7 @@ const OrderPage = () => {
           {ordersList.map((order) => {
             return (
               <OrderItem
-                key={order.id}
+                key={order?.id}
                 order={order}
                 onEffectExecuted={handleEffectExecuted}
               />
