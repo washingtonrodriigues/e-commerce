@@ -1,6 +1,6 @@
 import { ShoppingCartIcon } from "lucide-react";
 import { Badge } from "./badge";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { CartContext } from "@/providers/cart";
 import CartItem from "./cart-item";
 import { computeProductTotalPrice } from "@/helpers/product";
@@ -11,9 +11,11 @@ import { createCheckout } from "@/actions/checkout";
 import { loadStripe } from "@stripe/stripe-js";
 import { useSession } from "next-auth/react";
 import { createOrder } from "@/actions/order";
+import BouncingDotsLoader from "@/animations/BouncingDotsLoader/bouncing-dots-loader";
 
 const Cart = () => {
   const { data } = useSession();
+  const [redirecting, setRedirecting] = useState<boolean>(false);
   const { products, total, subtotal, totalDiscount, clearCart } =
     useContext(CartContext);
 
@@ -25,6 +27,8 @@ const Cart = () => {
     const order = await createOrder(products, (data?.user as any).id);
 
     const checkout = await createCheckout(products, order.id);
+
+    setRedirecting(true);
 
     const stripe = await loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY);
 
@@ -84,7 +88,7 @@ const Cart = () => {
           onClick={handleFinishPurchaseClick}
           className="mt-7 font-bold uppercase"
         >
-          Finalizar compra
+          {redirecting ? <BouncingDotsLoader /> : <span>Finalizar compra</span>}
         </Button>
       </div>
     </div>

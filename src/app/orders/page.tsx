@@ -5,14 +5,14 @@ import { PackageSearchIcon } from "lucide-react";
 import OrderItem from "./components/order-item";
 import getOrders from "../api/order/get-orders/route";
 import { useEffect, useState } from "react";
-import Loading from "@/components/ui/loading";
+import Loading from "@/animations/loading";
 
 export const dynamic = "force-dynamic";
 
 const OrderPage = () => {
   const [ordersList, setOrdersList] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [effectExecuted, setEffectExecuted] = useState(false);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [effectExecuted, setEffectExecuted] = useState<boolean>(false);
 
   const handleEffectExecuted = () => {
     setEffectExecuted(true);

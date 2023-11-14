@@ -9,7 +9,7 @@ import { Badge } from "@/components/ui/badge";
 import { SearchIcon } from "lucide-react";
 import { Product } from "@prisma/client";
 import SearchInput from "../(home)/components/search-input";
-import Loading from "../../components/ui/loading";
+import Loading from "../../animations/loading";
 
 const SearchProductsPage = () => {
   const [productsList, setProductsList] = useState<Product[]>([]);
