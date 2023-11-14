@@ -14,7 +14,7 @@ import { Separator } from "@/components/ui/separator";
 import { useMemo, useState } from "react";
 import { computeProductTotalPrice } from "@/helpers/product";
 import { getOrderStatus } from "../helpers/status";
-import { TrashIcon } from "lucide-react";
+import { CreditCardIcon, TrashIcon } from "lucide-react";
 import handleDeleteOrder from "@/app/api/order/delete-order/delete";
 import {
   AlertDialog,
@@ -27,6 +27,7 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
+import { Button } from "@/components/ui/button";
 
 interface OrderItemProps {
   order: Prisma.OrderGetPayload<{
@@ -148,7 +149,15 @@ const OrderItem = ({ order, onEffectExecuted }: OrderItemProps) => {
                 </div>
               </div>
             </div>
-            <div className="flex items-center justify-center gap-2 rounded-sm bg-[#9e2828] p-2">
+            {order.status === "WAITING_FOR_PAYMENT" && (
+              <Button
+                className=" w-full gap-2"
+                // onClick={handleMakePaymentClick}
+              >
+                <CreditCardIcon size={18} /> Realizar pagamento
+              </Button>
+            )}
+            <div className="mt-4 flex h-[40px] items-center justify-center gap-2 rounded-sm bg-[#9e2828] p-2">
               <AlertDialog>
                 <AlertDialogTrigger className="flex gap-2">
                   <TrashIcon size={18} />
@@ -173,25 +182,6 @@ const OrderItem = ({ order, onEffectExecuted }: OrderItemProps) => {
           </AccordionContent>
         </AccordionItem>
       </Accordion>
-      {/* {confirmDelete && (
-        <AlertDialog>
-          <AlertDialogTrigger>Open</AlertDialogTrigger>
-          <AlertDialogContent>
-            <AlertDialogHeader>
-              <AlertDialogTitle>Deletar pedido</AlertDialogTitle>
-              <AlertDialogDescription>
-                Você tem certeza que deseja deletar este pedido?
-              </AlertDialogDescription>
-            </AlertDialogHeader>
-            <AlertDialogFooter>
-              <AlertDialogCancel>Cancelar</AlertDialogCancel>
-              <AlertDialogAction onClick={handleClickDeleteOrder}>
-                Confirmar
-              </AlertDialogAction>
-            </AlertDialogFooter>
-          </AlertDialogContent>
-        </AlertDialog>
-      )} */}
     </Card>
   );
 };

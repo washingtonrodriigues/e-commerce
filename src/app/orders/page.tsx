@@ -3,7 +3,7 @@
 import { Badge } from "@/components/ui/badge";
 import { PackageSearchIcon } from "lucide-react";
 import OrderItem from "./components/order-item";
-import getOrders from "../api/order/get-orders/route";
+import getOrders from "../api/order/get-orders/get-orders";
 import { useEffect, useState } from "react";
 import Loading from "@/animations/loading";
 

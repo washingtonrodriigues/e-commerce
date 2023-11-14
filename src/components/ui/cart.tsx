@@ -35,7 +35,9 @@ const Cart = () => {
     stripe?.redirectToCheckout({
       sessionId: checkout.id,
     });
-    clearCart();
+    setTimeout(() => {
+      clearCart();
+    }, 3000);
   };
 
   return (
