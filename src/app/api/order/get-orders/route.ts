@@ -8,7 +8,7 @@ const getOrders = async () => {
   const session = await getServerSession(authOptions);
 
   if (!session || !session.user) {
-    throw new Error("Access denied! Please log in to view your orders.");
+    console.log("Access denied! Please log in to view your orders.");
   }
 
   const userId = (session.user as any).id;
