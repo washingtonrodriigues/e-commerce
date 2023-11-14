@@ -5,24 +5,35 @@ import { PackageSearchIcon } from "lucide-react";
 import OrderItem from "./components/order-item";
 import getOrders from "../api/order/get-orders/route";
 import { useEffect, useState } from "react";
+import Loading from "@/components/ui/loading";
 
 export const dynamic = "force-dynamic";
 
 const OrderPage = () => {
   const [ordersList, setOrdersList] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [effectExecuted, setEffectExecuted] = useState(false);
+
+  const handleEffectExecuted = () => {
+    setEffectExecuted(true);
+  };
 
   useEffect(() => {
     const fetchOrders = async () => {
       try {
+        setLoading(true);
         const orders = await getOrders();
-        setOrdersList(orders);
+        setOrdersList(orders as any);
       } catch (error) {
         console.log("Erro ao buscar pedidos: ", error);
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchOrders();
-  }, []); // Executa apenas na montagem inicial
+    setEffectExecuted(false);
+  }, [effectExecuted]);
 
   return (
     <div className="p-5 lg:container lg:mx-auto lg:py-10">
@@ -33,12 +44,21 @@ const OrderPage = () => {
         <PackageSearchIcon size={16} />
         Meus pedidos
       </Badge>
-      <div className="mt-5 flex flex-col gap-5">
-        {ordersList.map((order) => {
-          console.log(order); // Adicione esta linha
-          return <OrderItem key={order.id} order={order} />;
-        })}
-      </div>
+      {loading ? (
+        <Loading className="mt-[50%]" />
+      ) : (
+        <div className="mt-5 flex flex-col gap-5">
+          {ordersList.map((order) => {
+            return (
+              <OrderItem
+                key={order.id}
+                order={order}
+                onEffectExecuted={handleEffectExecuted}
+              />
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 };

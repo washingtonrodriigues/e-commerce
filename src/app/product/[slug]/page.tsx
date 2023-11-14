@@ -3,7 +3,6 @@ import ProductImages from "./components/product-images";
 import ProductInfo from "./components/product-info";
 import { computeProductTotalPrice } from "@/helpers/product";
 import ProductList from "@/components/ui/product-list";
-import Sectiontitle from "@/components/ui/section-title";
 import SectionTitle from "@/components/ui/section-title";
 
 interface ProductDetailsPageProps {

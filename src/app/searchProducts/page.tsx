@@ -2,14 +2,14 @@
 
 import { useSearchParams } from "next/navigation";
 import searchProducts from "../api/search/search-function";
-import { SetStateAction, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { computeProductTotalPrice } from "@/helpers/product";
 import ProductItem from "@/components/ui/product-item";
 import { Badge } from "@/components/ui/badge";
 import { SearchIcon } from "lucide-react";
 import { Product } from "@prisma/client";
 import SearchInput from "../(home)/components/search-input";
-import Loading from "./loading";
+import Loading from "../../components/ui/loading";
 
 const SearchProductsPage = () => {
   const [productsList, setProductsList] = useState<Product[]>([]);

@@ -11,11 +11,22 @@ import { Prisma } from "@prisma/client";
 import { format } from "date-fns";
 import OrderProductItem from "./order-product-item";
 import { Separator } from "@/components/ui/separator";
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { computeProductTotalPrice } from "@/helpers/product";
 import { getOrderStatus } from "../helpers/status";
 import { TrashIcon } from "lucide-react";
 import handleDeleteOrder from "@/app/api/order/delete-order/delete";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 
 interface OrderItemProps {
   order: Prisma.OrderGetPayload<{
@@ -25,9 +36,11 @@ interface OrderItemProps {
       };
     };
   }>;
+  onEffectExecuted: () => void;
 }
 
-const OrderItem = ({ order }: OrderItemProps) => {
+const OrderItem = ({ order, onEffectExecuted }: OrderItemProps) => {
+  const [deletedOrder, setDeletedOrder] = useState(false);
   const subtotal = useMemo(() => {
     return order.orderProducts.reduce((acc, orderProduct) => {
       return (
@@ -46,12 +59,9 @@ const OrderItem = ({ order }: OrderItemProps) => {
   const totalDiscounts = subtotal - total;
 
   const handleClickDeleteOrder = () => {
-    const confirmDelete = confirm(
-      "Tem certeza que deseja deletar esse pedido?",
-    );
-    if (confirmDelete) {
-      handleDeleteOrder({ order });
-    }
+    handleDeleteOrder({ order });
+    setDeletedOrder(true);
+    onEffectExecuted();
   };
 
   return (
@@ -138,15 +148,50 @@ const OrderItem = ({ order }: OrderItemProps) => {
                 </div>
               </div>
             </div>
+            <div className="flex items-center justify-center gap-2 rounded-sm bg-[#9e2828] p-2">
+              <AlertDialog>
+                <AlertDialogTrigger className="flex gap-2">
+                  <TrashIcon size={18} />
+                  Deletar pedido
+                </AlertDialogTrigger>
+                <AlertDialogContent>
+                  <AlertDialogHeader>
+                    <AlertDialogTitle>Deletar pedido</AlertDialogTitle>
+                    <AlertDialogDescription>
+                      Você tem certeza que deseja deletar este pedido?
+                    </AlertDialogDescription>
+                  </AlertDialogHeader>
+                  <AlertDialogFooter>
+                    <AlertDialogCancel>Cancelar</AlertDialogCancel>
+                    <AlertDialogAction onClick={handleClickDeleteOrder}>
+                      Confirmar
+                    </AlertDialogAction>
+                  </AlertDialogFooter>
+                </AlertDialogContent>
+              </AlertDialog>
+            </div>
           </AccordionContent>
         </AccordionItem>
       </Accordion>
-      <div
-        className=" rounded-sm bg-[#9e2828] p-2"
-        onClick={handleClickDeleteOrder}
-      >
-        <TrashIcon />
-      </div>
+      {/* {confirmDelete && (
+        <AlertDialog>
+          <AlertDialogTrigger>Open</AlertDialogTrigger>
+          <AlertDialogContent>
+            <AlertDialogHeader>
+              <AlertDialogTitle>Deletar pedido</AlertDialogTitle>
+              <AlertDialogDescription>
+                Você tem certeza que deseja deletar este pedido?
+              </AlertDialogDescription>
+            </AlertDialogHeader>
+            <AlertDialogFooter>
+              <AlertDialogCancel>Cancelar</AlertDialogCancel>
+              <AlertDialogAction onClick={handleClickDeleteOrder}>
+                Confirmar
+              </AlertDialogAction>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
+      )} */}
     </Card>
   );
 };
