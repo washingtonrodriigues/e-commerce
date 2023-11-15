@@ -6,11 +6,12 @@ import OrderItem from "./components/order-item";
 import getOrders from "../api/order/get-orders/get-orders";
 import { useEffect, useState } from "react";
 import Loading from "@/animations/loading";
+import { OrderProduct } from "@prisma/client";
 
 export const dynamic = "force-dynamic";
 
 const OrderPage = () => {
-  const [ordersList, setOrdersList] = useState([]);
+  const [ordersList, setOrdersList] = useState<OrderProduct[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [effectExecuted, setEffectExecuted] = useState<boolean>(false);
 
@@ -49,10 +50,11 @@ const OrderPage = () => {
       ) : (
         <div className="mt-5 flex flex-col gap-5">
           {ordersList.map((order) => {
+            console.log(order);
             return (
               <OrderItem
                 key={order?.id}
-                order={order}
+                order={order as any}
                 onEffectExecuted={handleEffectExecuted}
               />
             );
