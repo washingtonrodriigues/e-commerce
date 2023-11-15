@@ -24,7 +24,13 @@ const OrderPage = () => {
       try {
         setLoading(true);
         const orders = await getOrders();
-        setOrdersList(orders as any);
+        const sortedOrders = orders.sort((a, b) => {
+          // Supondo que 'createdAt' seja o campo de data de criação do pedido
+          return (
+            new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+          );
+        });
+        setOrdersList(sortedOrders as any);
       } catch (error) {
         console.log("Erro ao buscar pedidos: ", error);
       } finally {

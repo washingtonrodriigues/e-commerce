@@ -105,19 +105,19 @@ const OrderItem = ({ order, onEffectExecuted }: OrderItemProps) => {
               <div className="flex items-center justify-between lg:hidden">
                 <div className="font-bold ">
                   <p className="text-xs lg:text-sm">Status</p>
-                  <p className="text-xs text-[#8162FF] lg:text-sm">
+                  <p className="mt-1 text-xs text-[#8162FF] lg:text-sm">
                     {getOrderStatus(order.status)}
                   </p>
                 </div>
                 <div>
                   <p className="text-xs font-bold lg:text-sm">Data</p>
-                  <p className="text-xs opacity-60 lg:text-sm">
+                  <p className="mt-1 text-xs opacity-60 lg:text-sm">
                     {format(order.createdAt, "d/MM/y")}
                   </p>
                 </div>
                 <div>
                   <p className="text-xs font-bold lg:text-sm">Pagamento</p>
-                  <p className="text-xs opacity-60 lg:text-sm">Cartão</p>
+                  <p className="mt-1 text-xs opacity-60 lg:text-sm">Cartão</p>
                 </div>
               </div>
               {order.orderProducts.map((orderProduct) => (
