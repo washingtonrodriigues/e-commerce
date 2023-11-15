@@ -7,6 +7,8 @@ import { CartContext } from "@/providers/cart";
 import { Alert, Snackbar } from "@mui/material";
 import { ArrowLeftIcon, ArrowRightIcon, TruckIcon } from "lucide-react";
 import { useContext, useState } from "react";
+import { motion } from "framer-motion";
+import { fadeIn } from "@/animations/variants";
 
 interface ProductInfoProps {
   product: ProductWithTotalPrice;
@@ -29,7 +31,13 @@ const ProductInfo = ({ product }: ProductInfoProps) => {
     setShowToastSuccess(true);
   };
   return (
-    <div className="flex flex-col px-5 lg:w-[40%] lg:rounded-lg lg:bg-accent lg:p-10">
+    <motion.div
+      className="flex flex-col px-5 lg:w-[40%] lg:rounded-lg lg:bg-accent lg:p-10"
+      variants={fadeIn("down", 0)}
+      initial="hidden"
+      animate="show"
+      exit="hidden"
+    >
       <h2 className="text-lg lg:text-2xl">{product.name}</h2>
       <div className="flex items-center gap-2">
         <h1 className="text-xl font-bold lg:text-3xl">
@@ -98,7 +106,7 @@ const ProductInfo = ({ product }: ProductInfoProps) => {
           </Alert>
         </Snackbar>
       )}
-    </div>
+    </motion.div>
   );
 };
 
