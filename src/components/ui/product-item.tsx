@@ -17,9 +17,9 @@ const ProductItem = ({ product }: ProductItemProps) => {
   return (
     <Link
       href={`/product/${product.slug}`}
-      className={`poppins flex min-w-[156px] flex-col gap-4 ${styles.poppins}`}
+      className={`poppins flex min-w-[156px] flex-col gap-4  ${styles.poppins}`}
     >
-      <div className="relative flex  aspect-square h-[170px] w-full items-center justify-center rounded-lg bg-accent">
+      <div className="relative flex  aspect-square h-[170px] w-full items-center justify-center rounded-lg bg-accent lg:h-[200px] lg:w-[200px]">
         <Image
           src={product.imageUrls?.[0]}
           height={0}
@@ -36,7 +36,7 @@ const ProductItem = ({ product }: ProductItemProps) => {
       </div>
 
       <div className="flex flex-col gap-1">
-        <p className="overflow-hidden text-ellipsis whitespace-nowrap text-sm">
+        <p className="overflow-hidden text-ellipsis whitespace-nowrap text-sm lg:text-base">
           {product.name}
         </p>
         <div className="flex items-center gap-2 whitespace-nowrap">
@@ -50,7 +50,7 @@ const ProductItem = ({ product }: ProductItemProps) => {
               </p>
             </>
           ) : (
-            <p className="text-sm font-semibold">
+            <p className="text-sm font-semibold lg:text-sm">
               R$ {Number(product.basePrice).toFixed(2).replace(".", ",")}
             </p>
           )}
