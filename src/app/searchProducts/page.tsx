@@ -13,19 +13,13 @@ import Loading from "../../animations/loading";
 
 const SearchProductsPage = () => {
   const [productsList, setProductsList] = useState<Product[]>([]);
-  const [clickSearchBar, setClickSearchBar] = useState(false);
   const [loading, setLoading] = useState(false);
   const searchParams = useSearchParams();
   const searchText = searchParams.get("product");
 
-  const handleClickSearchBar = () => {
-    setClickSearchBar(!clickSearchBar);
-  };
-
   // Chame a função de busca
   useEffect(() => {
     if (searchText) {
-      setClickSearchBar(false);
       setLoading(true);
       searchProducts({ searchText })
         .then((products) => {
@@ -43,20 +37,19 @@ const SearchProductsPage = () => {
 
   return (
     <div className="flex flex-col gap-8 p-5">
-      {clickSearchBar ? (
-        <SearchInput />
-      ) : (
-        <Badge
-          className="w-fit gap-1 border-2 border-primary px-3 py-[0.375rem] text-base uppercase"
-          variant="outline"
-          onClick={handleClickSearchBar}
-        >
-          <SearchIcon />
-          <p className="text-sm">
-            Resultado para: <span>{searchText}</span>
-          </p>
-        </Badge>
-      )}
+      <SearchInput
+        className="lg:hidden
+        "
+      />
+      <Badge
+        className="w-fit gap-1 border-2 border-primary px-3 py-[0.375rem] text-base uppercase"
+        variant="outline"
+      >
+        <SearchIcon />
+        <p className="text-sm">
+          Resultado para: <span>{searchText}</span>
+        </p>
+      </Badge>
       {loading ? (
         <Loading className="mt-[50%]" />
       ) : productsList.length > 0 ? (
