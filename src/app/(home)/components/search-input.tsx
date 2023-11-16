@@ -12,7 +12,6 @@ const SearchInput = ({ className }: any) => {
 
   const handleSubmit = (ev: React.FormEvent) => {
     ev.preventDefault();
-
     searchProducts({ searchText })
       .then((products: any) => {
         setSearchResults(products);

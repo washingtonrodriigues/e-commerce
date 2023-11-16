@@ -40,15 +40,12 @@ import {
 } from "./dropdown-menu";
 import { Badge } from "./badge";
 import { motion } from "framer-motion";
-import { fadeIn } from "@/animations/variants";
 import SearchInput from "@/app/(home)/components/search-input";
 
 const Header = () => {
   const [inputSearch, setInputSearch] = useState<boolean>(false);
   const { products } = useContext(CartContext);
   const searchInputRef = useRef<HTMLDivElement>(null);
-
-  // ...
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -213,8 +210,7 @@ const Header = () => {
               initial={{ opacity: 0, width: 0 }}
               animate={{ opacity: 1, width: "300px" }}
               exit={{ opacity: 0, width: 0 }}
-              onBlur={() => setInputSearch(false)}
-              className="absolute right-0 top-0 w-[300px]"
+              className="absolute right-[-5px] top-0 w-[300px]"
             >
               <SearchInput />
             </motion.span>
@@ -224,7 +220,6 @@ const Header = () => {
             size="icon"
             className="hidden items-center justify-center lg:flex"
             onClick={() => setInputSearch(true)}
-            style={{ opacity: inputSearch ? "0" : "" }}
           >
             <SearchIcon />
           </Button>
