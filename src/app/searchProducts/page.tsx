@@ -53,7 +53,7 @@ const SearchProductsPage = () => {
       {loading ? (
         <Loading className="mt-[50%]" />
       ) : productsList.length > 0 ? (
-        <div className="grid grid-cols-2 gap-8">
+        <div className="grid grid-cols-2 gap-8 lg:grid-cols-5">
           {productsList.map((product) => (
             <ProductItem
               key={product.id}

@@ -52,7 +52,7 @@ const OrderPage = () => {
         Meus pedidos
       </Badge>
       {loading ? (
-        <Loading className="mt-[50%]" />
+        <Loading className="mt-[50%] lg:mt-[20%]" />
       ) : (
         <div className="mt-5 flex flex-col gap-5">
           {ordersList.map((order) => {

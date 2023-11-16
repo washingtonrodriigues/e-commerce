@@ -149,17 +149,17 @@ const OrderItem = ({ order, onEffectExecuted }: OrderItemProps) => {
                 </div>
               </div>
             </div>
-            {order.status === "WAITING_FOR_PAYMENT" && (
-              <Button
-                className=" w-full gap-2"
-                // onClick={handleMakePaymentClick}
-              >
-                <CreditCardIcon size={18} /> Realizar pagamento
-              </Button>
-            )}
-            <div className="mt-4 flex h-[40px] items-center justify-center gap-2 rounded-sm bg-[#9e2828] p-2">
+            <div className="mx-auto flex w-full gap-5">
+              {order.status === "WAITING_FOR_PAYMENT" && (
+                <Button
+                  className=" w-full gap-2"
+                  // onClick={handleMakePaymentClick}
+                >
+                  <CreditCardIcon size={18} /> Realizar pagamento
+                </Button>
+              )}
               <AlertDialog>
-                <AlertDialogTrigger className="flex gap-2">
+                <AlertDialogTrigger className="mt-4 flex h-[40px] w-full items-center justify-center gap-2 rounded-sm bg-[#9e2828] p-2 lg:mt-0 lg:h-[42px]">
                   <TrashIcon size={18} />
                   Deletar pedido
                 </AlertDialogTrigger>
