@@ -30,7 +30,6 @@ import {
 import { Button } from "@/components/ui/button";
 import { createCheckout } from "@/actions/checkout";
 import { loadStripe } from "@stripe/stripe-js";
-import { CartProduct } from "@/providers/cart";
 
 interface OrderItemProps {
   order: Prisma.OrderGetPayload<{
@@ -214,3 +213,6 @@ const OrderItem = ({ order, onEffectExecuted }: OrderItemProps) => {
 };
 
 export default OrderItem;
+function clearCart() {
+  throw new Error("Function not implemented.");
+}
