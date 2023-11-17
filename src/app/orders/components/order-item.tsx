@@ -28,6 +28,9 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
+import { createCheckout } from "@/actions/checkout";
+import { loadStripe } from "@stripe/stripe-js";
+import { CartProduct } from "@/providers/cart";
 
 interface OrderItemProps {
   order: Prisma.OrderGetPayload<{
@@ -63,6 +66,30 @@ const OrderItem = ({ order, onEffectExecuted }: OrderItemProps) => {
     handleDeleteOrder({ order });
     setDeletedOrder(true);
     onEffectExecuted();
+  };
+
+  const handleMakePaymentClick = async () => {
+    const orderId = order.id;
+
+    const products = order.orderProducts.map((orderProduct) => {
+      const product = orderProduct.product;
+
+      return {
+        name: product.name,
+        description: product.description,
+        imageUrls: product.imageUrls,
+        totalPrice: computeProductTotalPrice(product).totalPrice,
+        quantity: orderProduct.quantity,
+      };
+    });
+
+    const checkout = await createCheckout(products as any, orderId);
+
+    const stripe = await loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY);
+
+    stripe?.redirectToCheckout({
+      sessionId: checkout.id,
+    });
   };
 
   return (
@@ -149,11 +176,11 @@ const OrderItem = ({ order, onEffectExecuted }: OrderItemProps) => {
                 </div>
               </div>
             </div>
-            <div className="mx-auto flex w-full gap-5">
+            <div className="mx-auto w-full gap-5 lg:flex">
               {order.status === "WAITING_FOR_PAYMENT" && (
                 <Button
                   className=" w-full gap-2"
-                  // onClick={handleMakePaymentClick}
+                  onClick={handleMakePaymentClick}
                 >
                   <CreditCardIcon size={18} /> Realizar pagamento
                 </Button>
