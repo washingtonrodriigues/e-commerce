@@ -48,7 +48,7 @@ const SearchInput = ({ className }: any) => {
           name=""
           id=""
           className={`w-full bg-transparent outline-none placeholder:text-[#949494] ${
-            error ? "text-red-500" : ""
+            error ? "text-red-500 placeholder:text-[#bf0000]" : ""
           }`}
         />
         <button type="submit">

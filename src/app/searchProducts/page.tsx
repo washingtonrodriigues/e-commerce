@@ -10,6 +10,7 @@ import { SearchIcon } from "lucide-react";
 import { Product } from "@prisma/client";
 import SearchInput from "../(home)/components/search-input";
 import Loading from "../../animations/loading";
+import Image from "next/image";
 
 const SearchProductsPage = () => {
   const [productsList, setProductsList] = useState<Product[]>([]);
@@ -62,9 +63,20 @@ const SearchProductsPage = () => {
           ))}
         </div>
       ) : (
-        <p className="absolute left-[25%] top-[50%]">
-          Nenhum produto encontrado!
-        </p>
+        <div>
+          <p className="absolute left-[25%] top-[50%]">
+            Ops! Não conseguimos encontrar nada relacionado a:{" "}
+            <span className="font-bold text-primary">{searchText}</span>
+          </p>
+          <Image
+            src="/no_result.svg"
+            alt="Resultado não encontrado"
+            className="w-[350px]"
+            width={0}
+            height={0}
+            sizes="100vw"
+          />
+        </div>
       )}
     </div>
   );
