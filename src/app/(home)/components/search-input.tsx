@@ -56,8 +56,8 @@ const SearchInput = ({ className }: any) => {
         </button>
       </div>
       {error && (
-        <p className="mt-2 text-sm text-red-500">
-          Campo de pesquisa não pode estar vazio.
+        <p className="ml-3 mt-2 text-xs text-red-500">
+          Digite algo para poder pesquisar!
         </p>
       )}
     </form>
