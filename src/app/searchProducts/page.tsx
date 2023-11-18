@@ -63,8 +63,8 @@ const SearchProductsPage = () => {
           ))}
         </div>
       ) : (
-        <div>
-          <p className="absolute left-[25%] top-[50%]">
+        <div className="flex flex-col items-center justify-center">
+          <p className="lg:text-xl">
             Ops! Não conseguimos encontrar nada relacionado a:{" "}
             <span className="font-bold text-primary">{searchText}</span>
           </p>
