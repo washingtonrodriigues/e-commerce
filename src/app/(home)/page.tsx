@@ -36,11 +36,11 @@ export default async function Home() {
   return (
     <div className="flex flex-col gap-8 lg:gap-10">
       <SearchInput className="lg:hidden" />
-      <Link href="/offers" className="-mt-8 hidden lg:block">
+      <Link href="/deals" className="-mt-8 hidden lg:block">
         <DesktopBanner />
       </Link>
       <div className="flex flex-col gap-8 p-0 lg:container lg:gap-10">
-        <Link href="/offers" className="lg:hidden">
+        <Link href="/deals" className="lg:hidden">
           <PromoBanner
             src="/banner_home_01.png"
             alt="Até 55% de desconto esse mês!"

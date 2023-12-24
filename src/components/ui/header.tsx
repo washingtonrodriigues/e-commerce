@@ -23,7 +23,7 @@ import {
   SheetHeader,
   SheetTrigger,
 } from "./sheet";
-import { signIn, signOut, useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
 import { Separator } from "@radix-ui/react-separator";
 import Link from "next/link";
@@ -41,6 +41,7 @@ import {
 import { Badge } from "./badge";
 import { motion } from "framer-motion";
 import SearchInput from "@/app/(home)/components/search-input";
+import { prismaClient } from "@/lib/prisma";
 
 const Header = () => {
   const [inputSearch, setInputSearch] = useState<boolean>(false);
@@ -69,9 +70,9 @@ const Header = () => {
 
   const { status, data } = useSession();
 
-  const handleLoginClick = async () => {
-    await signIn();
-  };
+  // const handleLoginClick = async () => {
+  //   await signIn();
+  // };
   const handleLogoutClick = async () => {
     await signOut();
   };
@@ -114,14 +115,18 @@ const Header = () => {
           )}
           <div className={`mt-4 flex flex-col gap-3 ${styles.poppins}`}>
             {status === "unauthenticated" && (
-              <Button
-                variant="outline"
-                className="width-full justify-start gap-2"
-                onClick={handleLoginClick}
-              >
-                <LogInIcon size={16} />
-                Fazer Login
-              </Button>
+              <SheetClose asChild>
+                <Link href="/login">
+                  <Button
+                    variant="outline"
+                    className="width-full justify-start gap-2"
+                    // onClick={handleLoginClick}
+                  >
+                    <LogInIcon size={16} />
+                    Fazer Login
+                  </Button>
+                </Link>
+              </SheetClose>
             )}
             {status === "authenticated" && (
               <Button
@@ -263,12 +268,14 @@ const Header = () => {
               </>
             )}
             {status === "unauthenticated" ? (
-              <DropdownMenuItem
-                onClick={handleLoginClick}
-                className="flex items-center gap-2"
-              >
-                <LogInIcon size={16} /> Fazer login
-              </DropdownMenuItem>
+              <Link href="/login">
+                <DropdownMenuItem
+                  // onClick={handleLoginClick}
+                  className="flex items-center gap-2"
+                >
+                  <LogInIcon size={16} /> Fazer login
+                </DropdownMenuItem>
+              </Link>
             ) : (
               <DropdownMenuItem
                 onClick={handleLogoutClick}
