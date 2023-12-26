@@ -6,7 +6,7 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
 
 export const authOptions: AuthOptions = {
-  adapter: PrismaAdapter(prismaClient),
+  // adapter: PrismaAdapter(prismaClient),
   secret: process.env.NEXTAUTH_SECRET,
   session: {
     strategy: "jwt",
@@ -51,9 +51,9 @@ export const authOptions: AuthOptions = {
 
         return {
           id: `${userFound.id}`,
-          name: userFound.name,
+          name: userFound.name || null,
           email: userFound.email,
-        };
+        } as any;
       },
     }),
   ],
