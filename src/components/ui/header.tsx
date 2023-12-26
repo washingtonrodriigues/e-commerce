@@ -116,7 +116,7 @@ const Header = () => {
           <div className={`mt-4 flex flex-col gap-3 ${styles.poppins}`}>
             {status === "unauthenticated" && (
               <SheetClose asChild>
-                <Link href="/login">
+                <Link href="/auth/login">
                   <Button
                     variant="outline"
                     className="width-full justify-start gap-2"

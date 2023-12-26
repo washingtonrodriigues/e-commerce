@@ -5,8 +5,11 @@ import styles from "../../../styles/fonts.module.css";
 import classNames from "classnames";
 import { UserCircleIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { Alert } from "@mui/material";
 
 const RegisterPage = () => {
+  const [registerSuccess, setRegisterSuccess] = useState(false);
   const {
     register,
     handleSubmit,
@@ -32,17 +35,31 @@ const RegisterPage = () => {
       },
     });
     if (res.ok) {
-      router.push("/auth/login");
+      setRegisterSuccess(true);
+      setTimeout(() => {
+        router.push("/auth/login");
+      }, 3000);
     }
     // const resJSON = await res.json();
     console.log(res);
   });
 
   return (
-    <div className="flex h-full justify-center">
+    <div className="flex h-full flex-col items-center justify-center gap-0">
+      {registerSuccess && (
+        <Alert
+          className="mb-2 mt-2 w-[80%]"
+          variant="filled"
+          severity="success"
+        >
+          Usuário cadastrado com sucesso!
+        </Alert>
+      )}
       <form
         onSubmit={onSubmit}
-        className={`m-auto flex h-[500px] w-[80%] flex-col items-center justify-evenly rounded-lg bg-white py-4 text-black ${styles.poppins}`}
+        className={`flex h-[520px] w-[80%] flex-col items-center justify-evenly py-4 ${
+          registerSuccess ? "rounded-b-lg" : "rounded-lg"
+        } bg-white text-black ${styles.poppins}`}
       >
         <div className="mb-2 flex flex-col items-center gap-1">
           <UserCircleIcon className="opacity-[0.7]" />
@@ -50,13 +67,13 @@ const RegisterPage = () => {
         </div>
 
         <div className=" flex flex-col">
-          <label htmlFor="name" className="mb-2 text-sm text-slate-700">
+          <label htmlFor="name" className="mb-1 text-sm text-slate-700">
             Nome completo
           </label>
           <input
             type="text"
             placeholder="Digite seu nome completo"
-            className="outline-solid w-[250px] rounded-lg bg-[#E8F0FE] p-4 text-sm outline-2 outline-[#0390fc]"
+            className="outline-solid mb-2 w-[250px] rounded-lg bg-[#E8F0FE] p-4 text-sm outline-2 outline-[#0390fc]"
             {...register("name", {
               required: {
                 value: true,
@@ -72,13 +89,13 @@ const RegisterPage = () => {
         </div>
 
         <div className=" flex flex-col">
-          <label htmlFor="email" className="mb-2 text-sm text-slate-700">
+          <label htmlFor="email" className="mb-1 text-sm text-slate-700">
             E-mail
           </label>
           <input
             type="email"
             placeholder="seuemail@exemplo.com"
-            className="outline-solid w-[250px] rounded-lg bg-[#E8F0FE] p-4 text-sm outline-2 outline-[#0390fc]"
+            className="outline-solid mb-2 w-[250px] rounded-lg bg-[#E8F0FE] p-4 text-sm outline-2 outline-[#0390fc]"
             {...register("email", {
               required: {
                 value: true,
@@ -94,13 +111,13 @@ const RegisterPage = () => {
         </div>
 
         <div className=" flex flex-col">
-          <label htmlFor="password" className="mb-2 text-sm text-slate-700">
+          <label htmlFor="password" className="mb-1 text-sm text-slate-700">
             Senha
           </label>
           <input
             type="password"
             placeholder="Digite sua senha"
-            className="outline-solid w-[250px] rounded-lg bg-[#E8F0FE] p-4 text-sm outline-2 outline-[#0390fc]"
+            className="outline-solid mb-2 w-[250px] rounded-lg bg-[#E8F0FE] p-4 text-sm outline-2 outline-[#0390fc]"
             {...register("password", {
               required: {
                 value: true,
@@ -125,7 +142,7 @@ const RegisterPage = () => {
           <input
             type="password"
             placeholder="Confirme sua senha"
-            className="outline-solid w-[250px] rounded-lg bg-[#E8F0FE] p-4 text-sm outline-2 outline-[#0390fc]"
+            className="outline-solid mb-2 w-[250px] rounded-lg bg-[#E8F0FE] p-4 text-sm outline-2 outline-[#0390fc]"
             {...register("confirmPassword", {
               required: {
                 value: true,
@@ -142,6 +159,9 @@ const RegisterPage = () => {
         <button className="mt-2 w-[250px] rounded-lg bg-[#0390fc] p-4 font-medium uppercase text-white">
           Cadastrar
         </button>
+        <a className="mt-2 text-sm" href="/auth/login">
+          Já possui conta? Faça login!
+        </a>
       </form>
     </div>
   );

@@ -7,6 +7,7 @@ import getOrders from "../api/order/get-orders/get-orders";
 import { useEffect, useState } from "react";
 import Loading from "@/animations/loading";
 import { OrderProduct } from "@prisma/client";
+import { useSession } from "next-auth/react";
 
 export const dynamic = "force-dynamic";
 
@@ -14,10 +15,13 @@ const OrderPage = () => {
   const [ordersList, setOrdersList] = useState<OrderProduct[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [effectExecuted, setEffectExecuted] = useState<boolean>(false);
+  const { status, data } = useSession();
 
   const handleEffectExecuted = () => {
     setEffectExecuted(true);
   };
+
+  console.log("CONSOLE DO SESSION", status, data);
 
   useEffect(() => {
     const fetchOrders = async () => {
